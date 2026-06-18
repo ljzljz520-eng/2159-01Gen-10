@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节日倒计时</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+  <div id="confetti-container"></div>
+
+  <div id="app">
+    <div id="setup-view" class="view active">
+      <div class="setup-card">
+        <h1 class="title">🎄 节日倒计时</h1>
+        <p class="subtitle">设置你的专属倒计时</p>
+
+        <div id="setup-error-message" class="error-message hidden"></div>
+
+        <form id="setup-form">
+          <div class="form-group">
+            <label for="target-date">目标日期</label>
+            <input type="date" id="target-date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="target-time">目标时间</label>
+            <input type="time" id="target-time" value="00:00" required>
+          </div>
+
+          <div class="form-group">
+            <label for="theme-color">主题颜色</label>
+            <div class="color-picker">
+              <input type="color" id="theme-color" value="#ff4757">
+              <div class="color-presets">
+                <button type="button" class="preset-color" data-color="#ff4757" style="background:#ff4757"></button>
+                <button type="button" class="preset-color" data-color="#2ed573" style="background:#2ed573"></button>
+                <button type="button" class="preset-color" data-color="#1e90ff" style="background:#1e90ff"></button>
+                <button type="button" class="preset-color" data-color="#ffa502" style="background:#ffa502"></button>
+                <button type="button" class="preset-color" data-color="#a55eea" style="background:#a55eea"></button>
+                <button type="button" class="preset-color" data-color="#ff6b81" style="background:#ff6b81"></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="greeting">祝福短句</label>
+            <input type="text" id="greeting" placeholder="例如：新年快乐！" maxlength="20" required>
+          </div>
+
+          <div class="quick-options">
+            <p class="quick-label">快速选择：</p>
+            <div class="quick-buttons">
+              <button type="button" class="quick-btn" data-date="2026-12-25" data-color="#ff4757" data-greeting="🎄 圣诞快乐！">
+                🎄 圣诞节
+              </button>
+              <button type="button" class="quick-btn" data-date="2027-01-01" data-color="#ffa502" data-greeting="🎊 新年快乐！">
+                🎊 元旦
+              </button>
+              <button type="button" class="quick-btn" data-date="2026-02-17" data-color="#ff4757" data-greeting="🧧 春节快乐！">
+                🧧 春节
+              </button>
+              <button type="button" class="quick-btn" data-date="2026-02-14" data-color="#ff6b81" data-greeting="💕 情人节快乐！">
+                💕 情人节
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="start-btn">开始倒计时 ⏱️</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="countdown-view" class="view">
+      <div id="error-message" class="error-message hidden"></div>
+
+      <div id="countdown-content">
+        <div class="greeting-text" id="greeting-display"></div>
+
+        <div class="countdown-timer">
+          <div class="time-block">
+            <span class="time-value" id="days">00</span>
+            <span class="time-label">天</span>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-block">
+            <span class="time-value" id="hours">00</span>
+            <span class="time-label">时</span>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-block">
+            <span class="time-value" id="minutes">00</span>
+            <span class="time-label">分</span>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-block">
+            <span class="time-value" id="seconds">00</span>
+            <span class="time-label">秒</span>
+          </div>
+        </div>
+
+        <div class="target-info">
+          <span id="target-display"></span>
+        </div>
+
+        <button id="back-btn" class="back-btn">⚙️ 重新设置</button>
+      </div>
+
+      <div id="celebration-view" class="celebration-view hidden">
+        <div class="celebration-content">
+          <h1 class="celebration-title" id="celebration-title"></h1>
+          <p class="celebration-subtitle">🎉 恭喜！时间到了！🎉</p>
+          <button id="restart-btn" class="back-btn">⚙️ 重新设置</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
